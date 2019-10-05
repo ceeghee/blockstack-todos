@@ -36,6 +36,7 @@ export default class App extends Component {
   componentWillMount() {
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then((userData) => {
+		  console.log(userData)
         //if (!userData.username) {
         //  throw new Error('This app requires a username.')
         //}
