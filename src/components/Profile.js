@@ -39,7 +39,8 @@ class Profile extends Component {
     this.props.userSession.getFile(TASKS_FILENAME, options)
     .then((content) => {
       if(content) {
-        const tasks = JSON.parse(content);
+		const tasks = JSON.parse(content);
+		// console.log('tasks: ',tasks) // tasks from gaia storage
         this.setState({tasks});
       } 
     })
@@ -47,7 +48,10 @@ class Profile extends Component {
 
   saveTasks(tasks) {
     const options = { encrypt: true };
-    this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options);
+	this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options)
+	.then(data => {
+		// console.log(data) saved encrypted data
+	})
   }
 
   handleChange(event) {
